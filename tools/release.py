@@ -29,4 +29,4 @@ with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zipf:
         for file in files:
             written = os.path.join(root, file)
             if written not in [zip_name, "./README.md"] and not written.startswith(("./Release", "./tools", "./.git", "./.vscode")):
-                zipf.write(os.path.join(root, file), os.path.join(root, file))
+                zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), ".."))
